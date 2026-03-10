@@ -1,9 +1,0 @@
-@use "sass:math";
-
-.grauity-init {
-    @for $i from 1 through 10 {
-        .font-size-#{4 * $i} {
-            font-size: calc(var(--multiplier) * #{math.div((4 * $i), 16)}em);
-        }
-    }
-}

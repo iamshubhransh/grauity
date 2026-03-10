@@ -1,2 +1,0 @@
-export const CALENDAR_BLOCK_HEIGHT = 80;
-export const CALENDAR_SIDEBAR_WIDTH = 80;
