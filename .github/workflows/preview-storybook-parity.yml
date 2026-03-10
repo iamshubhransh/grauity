@@ -1,0 +1,80 @@
+name: Build Parity Preview Storybook
+
+on:
+  push:
+    branches:
+      - "parity/**"
+  workflow_dispatch:
+    inputs:
+      target_ref:
+        description: "Parity branch ref to build preview for"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: parity-preview-${{ inputs.target_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-parity-preview:
+    runs-on: ubuntu-latest
+    env:
+      TARGET_REF: ${{ inputs.target_ref || github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          ref: ${{ inputs.target_ref || github.ref_name }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Storybook docs
+        run: |
+          npm run build-icons
+          npm run build-storybook
+
+      - name: Prepare preview metadata
+        run: |
+          echo "PREVIEW_PATH=previews/${TARGET_REF}" >> $GITHUB_ENV
+          echo "PREVIEW_URL=https://${GITHUB_REPOSITORY_OWNER}.github.io/${{ github.event.repository.name }}/previews/${TARGET_REF}/" >> $GITHUB_ENV
+
+      - name: Publish preview to gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -eux
+          git config --global user.name "Github Bot"
+          git config --global user.email "github-bot@users.noreply.github.com"
+
+          mkdir -p /tmp/gh-pages
+          cd /tmp/gh-pages
+          git init
+          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch origin gh-pages || true
+
+          if git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
+            git checkout -B gh-pages origin/gh-pages
+          else
+            git checkout --orphan gh-pages
+          fi
+
+          mkdir -p "${PREVIEW_PATH}"
+          rm -rf "${PREVIEW_PATH:?}"/*
+          cp -R "${GITHUB_WORKSPACE}/docs/." "${PREVIEW_PATH}/"
+          touch .nojekyll
+
+          git add -A
+          git commit -m "[BOT] Update parity preview for ${TARGET_REF}" || echo "No changes to commit"
+          git push origin gh-pages
+
+      - name: Preview summary
+        run: |
+          echo "Preview URL: ${PREVIEW_URL}" >> $GITHUB_STEP_SUMMARY
