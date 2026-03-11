@@ -6,6 +6,10 @@ import React from 'react';
 import Button from './Button';
 
 describe('Button', () => {
+    it('uses a stable displayName for tooling', () => {
+        expect(Button.displayName).toBe('Button');
+    });
+
     it('renders with default props', () => {
         render(<Button>Click Me</Button>);
         const button = screen.getByRole('button');

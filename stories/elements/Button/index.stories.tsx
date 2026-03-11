@@ -2,9 +2,23 @@
 import React from 'react';
 import Button, { ButtonProps } from 'ui/elements/Button';
 
+export const BUTTON_PARITY_COMPONENT_NAME_ALIASES = [
+    'Button',
+    'System_check-circle',
+];
+
+export const BUTTON_PARITY_PARAMETERS = {
+    componentName: 'Button',
+    designComponentName: 'System_check-circle',
+    componentNameAliases: BUTTON_PARITY_COMPONENT_NAME_ALIASES,
+};
+
 export default {
     title: 'Elements/Button',
     component: Button,
+    parameters: {
+        parity: BUTTON_PARITY_PARAMETERS,
+    },
 };
 
 const Template = (args: ButtonProps) => <Button {...args} />;
@@ -36,8 +50,8 @@ const defaultArgs: ButtonProps = {
     },
 };
 
-export const Component = Template.bind({});
+export const TypePrimary = Template.bind({});
 
-Component.args = {
+TypePrimary.args = {
     ...defaultArgs,
 };
