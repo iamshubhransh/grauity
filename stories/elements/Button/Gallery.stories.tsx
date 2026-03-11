@@ -204,6 +204,7 @@ export default {
     title: 'Elements/Button',
     component: Button,
     tags: ['!autodocs'],
+    excludeStories: /BUTTON_PARITY_.*/,
     parameters: {
         parity: BUTTON_PARITY_PARAMETERS,
     },

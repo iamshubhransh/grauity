@@ -16,6 +16,7 @@ export const BUTTON_PARITY_PARAMETERS = {
 export default {
     title: 'Elements/Button',
     component: Button,
+    excludeStories: /BUTTON_PARITY_.*/,
     parameters: {
         parity: BUTTON_PARITY_PARAMETERS,
     },
