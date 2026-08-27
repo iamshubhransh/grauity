@@ -76,11 +76,15 @@ function OverflowEventsList<T extends CalendarEventRequiredProps>(
             shouldCloseOnOutsideClick
         >
             <StyledOverflowEventsListContainer
-                width={overflowContainerWidth}
+                $width={overflowContainerWidth}
                 ref={popoverDataRef}
             >
                 <DateCircle date={cellDate} />
-                {events.map((event) => eventRenderer(event))}
+                {events.map((event) => (
+                    <React.Fragment key={event?.id}>
+                        {eventRenderer(event)}
+                    </React.Fragment>
+                ))}
             </StyledOverflowEventsListContainer>
         </PopOver>
     );

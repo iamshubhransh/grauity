@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 import { StyledTypographyInterface } from './types';
 import { getTypographyVariantStyles } from './utils';
@@ -12,16 +12,16 @@ export const StyledTypography = styled.p.attrs((props: any) => ({
     font-family: var(--font-family, 'Mona Sans');
     color: var(--text-emphasis-primary-default, #16191d);
 
-    ${({ variant }) =>
+    ${({ $variant }) =>
         css`
-            ${getTypographyVariantStyles(variant)}
+            ${getTypographyVariantStyles($variant)}
         `};
 
-    ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
-    ${({ textTransform }) =>
-        textTransform && `text-transform: ${textTransform};`}
-    ${({ fontSize }) => fontSize && `font-size: ${fontSize};`}
-    ${({ color }) => color && `color: ${color};`};
+    ${({ $textAlign }) => $textAlign && `text-align: ${$textAlign};`}
+    ${({ $textTransform }) =>
+        $textTransform && `text-transform: ${$textTransform};`}
+    ${({ $fontSize }) => $fontSize && `font-size: ${$fontSize};`}
+    ${({ $color }) => $color && `color: ${$color};`};
 `;
 
 export default StyledTypography;

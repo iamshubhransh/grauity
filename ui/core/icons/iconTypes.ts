@@ -75,6 +75,10 @@ export type grauityIconName =
     | 'play-rectangle-filled'
     | 'play-rectangle'
     | 'play'
+    | 'skip-next-filled'
+    | 'skip-next'
+    | 'skip-previous-filled'
+    | 'skip-previous'
     | 'video-filled'
     | 'video-off-filled'
     | 'video-off'
@@ -99,6 +103,8 @@ export type grauityIconName =
     | 'doubt-message-filled'
     | 'doubt-message'
     | 'doubt'
+    | 'fire-filled'
+    | 'fire'
     | 'hearing-filled'
     | 'hearing'
     | 'heart-filled'
@@ -161,16 +167,21 @@ export type grauityIconName =
     | 'codeforces'
     | 'facebook'
     | 'github'
+    | 'google-doc'
+    | 'google-slides'
     | 'google'
     | 'hackerearth'
     | 'hackerrank'
     | 'instagram'
+    | 'kaggle'
     | 'leetcode'
     | 'linkedin'
     | 'twitter'
     | 'whatsapp'
     | 'x'
     | 'youtube'
+    | 'ai-summary-filled'
+    | 'ai-summary'
     | 'arrow-double-filled'
     | 'arrow-double'
     | 'arrow-down-filled'
@@ -200,6 +211,8 @@ export type grauityIconName =
     | 'book-alt3-filled'
     | 'book-alt3'
     | 'book-filled'
+    | 'book-open-filled'
+    | 'book-open'
     | 'book'
     | 'briefcase-alt2-filled'
     | 'briefcase-alt2'
@@ -267,6 +280,8 @@ export type grauityIconName =
     | 'database'
     | 'diamond-filled'
     | 'diamond'
+    | 'dot-circle-filled'
+    | 'dot-circle'
     | 'double-check-filled'
     | 'double-check'
     | 'download-filled'
@@ -371,6 +386,8 @@ export type grauityIconName =
     | 'progress-zero'
     | 'python-filled'
     | 'python'
+    | 'question-filled'
+    | 'question'
     | 'quiz-filled'
     | 'quiz'
     | 'refresh-filled'
@@ -381,6 +398,8 @@ export type grauityIconName =
     | 'reply'
     | 'retail-filled'
     | 'retail'
+    | 'screen-share-filled'
+    | 'screen-share'
     | 'screenshare-start-filled'
     | 'screenshare-start'
     | 'screenshare-stop-filled'
@@ -411,6 +430,8 @@ export type grauityIconName =
     | 'signout'
     | 'slider-filled'
     | 'slider'
+    | 'split-screen-filled'
+    | 'split-screen'
     | 'square-filled'
     | 'square'
     | 'sticky-note-filled'
@@ -423,6 +444,8 @@ export type grauityIconName =
     | 'thumbs-up'
     | 'thunder-filled'
     | 'thunder'
+    | 'transcript-filled'
+    | 'transcript'
     | 'truck-filled'
     | 'truck'
     | 'upload-filled'
@@ -533,6 +556,10 @@ export type grauityIconKey =
     | 'PlayRectangleFilled'
     | 'PlayRectangle'
     | 'Play'
+    | 'SkipNextFilled'
+    | 'SkipNext'
+    | 'SkipPreviousFilled'
+    | 'SkipPrevious'
     | 'VideoFilled'
     | 'VideoOffFilled'
     | 'VideoOff'
@@ -557,6 +584,8 @@ export type grauityIconKey =
     | 'DoubtMessageFilled'
     | 'DoubtMessage'
     | 'Doubt'
+    | 'FireFilled'
+    | 'Fire'
     | 'HearingFilled'
     | 'Hearing'
     | 'HeartFilled'
@@ -619,16 +648,21 @@ export type grauityIconKey =
     | 'Codeforces'
     | 'Facebook'
     | 'Github'
+    | 'GoogleDoc'
+    | 'GoogleSlides'
     | 'Google'
     | 'Hackerearth'
     | 'Hackerrank'
     | 'Instagram'
+    | 'Kaggle'
     | 'Leetcode'
     | 'Linkedin'
     | 'Twitter'
     | 'Whatsapp'
     | 'X'
     | 'Youtube'
+    | 'AiSummaryFilled'
+    | 'AiSummary'
     | 'ArrowDoubleFilled'
     | 'ArrowDouble'
     | 'ArrowDownFilled'
@@ -658,6 +692,8 @@ export type grauityIconKey =
     | 'BookAlt3Filled'
     | 'BookAlt3'
     | 'BookFilled'
+    | 'BookOpenFilled'
+    | 'BookOpen'
     | 'Book'
     | 'BriefcaseAlt2Filled'
     | 'BriefcaseAlt2'
@@ -725,6 +761,8 @@ export type grauityIconKey =
     | 'Database'
     | 'DiamondFilled'
     | 'Diamond'
+    | 'DotCircleFilled'
+    | 'DotCircle'
     | 'DoubleCheckFilled'
     | 'DoubleCheck'
     | 'DownloadFilled'
@@ -829,6 +867,8 @@ export type grauityIconKey =
     | 'ProgressZero'
     | 'PythonFilled'
     | 'Python'
+    | 'QuestionFilled'
+    | 'Question'
     | 'QuizFilled'
     | 'Quiz'
     | 'RefreshFilled'
@@ -839,6 +879,8 @@ export type grauityIconKey =
     | 'Reply'
     | 'RetailFilled'
     | 'Retail'
+    | 'ScreenShareFilled'
+    | 'ScreenShare'
     | 'ScreenshareStartFilled'
     | 'ScreenshareStart'
     | 'ScreenshareStopFilled'
@@ -869,6 +911,8 @@ export type grauityIconKey =
     | 'Signout'
     | 'SliderFilled'
     | 'Slider'
+    | 'SplitScreenFilled'
+    | 'SplitScreen'
     | 'SquareFilled'
     | 'Square'
     | 'StickyNoteFilled'
@@ -881,6 +925,8 @@ export type grauityIconKey =
     | 'ThumbsUp'
     | 'ThunderFilled'
     | 'Thunder'
+    | 'TranscriptFilled'
+    | 'Transcript'
     | 'TruckFilled'
     | 'Truck'
     | 'UploadFilled'
@@ -991,6 +1037,10 @@ export enum GRAUITY_ICONS {
     PlayRectangleFilled = 'play-rectangle-filled',
     PlayRectangle = 'play-rectangle',
     Play = 'play',
+    SkipNextFilled = 'skip-next-filled',
+    SkipNext = 'skip-next',
+    SkipPreviousFilled = 'skip-previous-filled',
+    SkipPrevious = 'skip-previous',
     VideoFilled = 'video-filled',
     VideoOffFilled = 'video-off-filled',
     VideoOff = 'video-off',
@@ -1015,6 +1065,8 @@ export enum GRAUITY_ICONS {
     DoubtMessageFilled = 'doubt-message-filled',
     DoubtMessage = 'doubt-message',
     Doubt = 'doubt',
+    FireFilled = 'fire-filled',
+    Fire = 'fire',
     HearingFilled = 'hearing-filled',
     Hearing = 'hearing',
     HeartFilled = 'heart-filled',
@@ -1077,16 +1129,21 @@ export enum GRAUITY_ICONS {
     Codeforces = 'codeforces',
     Facebook = 'facebook',
     Github = 'github',
+    GoogleDoc = 'google-doc',
+    GoogleSlides = 'google-slides',
     Google = 'google',
     Hackerearth = 'hackerearth',
     Hackerrank = 'hackerrank',
     Instagram = 'instagram',
+    Kaggle = 'kaggle',
     Leetcode = 'leetcode',
     Linkedin = 'linkedin',
     Twitter = 'twitter',
     Whatsapp = 'whatsapp',
     X = 'x',
     Youtube = 'youtube',
+    AiSummaryFilled = 'ai-summary-filled',
+    AiSummary = 'ai-summary',
     ArrowDoubleFilled = 'arrow-double-filled',
     ArrowDouble = 'arrow-double',
     ArrowDownFilled = 'arrow-down-filled',
@@ -1116,6 +1173,8 @@ export enum GRAUITY_ICONS {
     BookAlt3Filled = 'book-alt3-filled',
     BookAlt3 = 'book-alt3',
     BookFilled = 'book-filled',
+    BookOpenFilled = 'book-open-filled',
+    BookOpen = 'book-open',
     Book = 'book',
     BriefcaseAlt2Filled = 'briefcase-alt2-filled',
     BriefcaseAlt2 = 'briefcase-alt2',
@@ -1183,6 +1242,8 @@ export enum GRAUITY_ICONS {
     Database = 'database',
     DiamondFilled = 'diamond-filled',
     Diamond = 'diamond',
+    DotCircleFilled = 'dot-circle-filled',
+    DotCircle = 'dot-circle',
     DoubleCheckFilled = 'double-check-filled',
     DoubleCheck = 'double-check',
     DownloadFilled = 'download-filled',
@@ -1287,6 +1348,8 @@ export enum GRAUITY_ICONS {
     ProgressZero = 'progress-zero',
     PythonFilled = 'python-filled',
     Python = 'python',
+    QuestionFilled = 'question-filled',
+    Question = 'question',
     QuizFilled = 'quiz-filled',
     Quiz = 'quiz',
     RefreshFilled = 'refresh-filled',
@@ -1297,6 +1360,8 @@ export enum GRAUITY_ICONS {
     Reply = 'reply',
     RetailFilled = 'retail-filled',
     Retail = 'retail',
+    ScreenShareFilled = 'screen-share-filled',
+    ScreenShare = 'screen-share',
     ScreenshareStartFilled = 'screenshare-start-filled',
     ScreenshareStart = 'screenshare-start',
     ScreenshareStopFilled = 'screenshare-stop-filled',
@@ -1327,6 +1392,8 @@ export enum GRAUITY_ICONS {
     Signout = 'signout',
     SliderFilled = 'slider-filled',
     Slider = 'slider',
+    SplitScreenFilled = 'split-screen-filled',
+    SplitScreen = 'split-screen',
     SquareFilled = 'square-filled',
     Square = 'square',
     StickyNoteFilled = 'sticky-note-filled',
@@ -1339,6 +1406,8 @@ export enum GRAUITY_ICONS {
     ThumbsUp = 'thumbs-up',
     ThunderFilled = 'thunder-filled',
     Thunder = 'thunder',
+    TranscriptFilled = 'transcript-filled',
+    Transcript = 'transcript',
     TruckFilled = 'truck-filled',
     Truck = 'truck',
     UploadFilled = 'upload-filled',

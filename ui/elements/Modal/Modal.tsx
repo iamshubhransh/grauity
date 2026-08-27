@@ -7,6 +7,7 @@ import React, {
     useRef,
 } from 'react';
 
+import GrauityLazyMotion from '../../../common/motion';
 import { useDisableBodyScroll, useKeyboardEvent } from '../../../hooks';
 import { IconButton } from '../Button';
 import Overlay from '../Overlay';
@@ -20,8 +21,109 @@ import {
     StyledModalMain,
     StyledModalTitle,
 } from './Modal.styles';
-import { ModalProps } from './types';
+import {
+    ModalActionProps,
+    ModalBannerProps,
+    ModalBodyProps,
+    ModalContainerProps,
+    ModalDividerProps,
+    ModalMainProps,
+    ModalProps,
+    ModalTitleProps,
+    ModalDescriptionProps,
+} from './types';
 import { getModalAnimationProps, getShouldRender } from './utils';
+
+const ModalModal = forwardRef<HTMLDivElement, ModalContainerProps>(
+    (
+        {
+            width,
+            height,
+            minHeight,
+            minWidth,
+            maxHeight,
+            maxWidth,
+            mobileBottomFullWidth,
+            modalPadding,
+            border,
+            children,
+            ...props
+        },
+        ref
+    ) => {
+        return (
+            <StyledModal
+                ref={ref}
+                $width={width}
+                $height={height}
+                $minHeight={minHeight}
+                $minWidth={minWidth}
+                $maxHeight={maxHeight}
+                $maxWidth={maxWidth}
+                $mobileBottomFullWidth={mobileBottomFullWidth}
+                $modalPadding={modalPadding}
+                $border={border}
+                {...props}
+            >
+                {children}
+            </StyledModal>
+        );
+    }
+);
+
+const ModalAction = forwardRef<HTMLDivElement, Omit<ModalActionProps, 'ref'>>(
+    ({ justifyContent, children }, ref) => {
+        return (
+            <StyledModalAction ref={ref} $justifyContent={justifyContent}>
+                {children}
+            </StyledModalAction>
+        );
+    }
+);
+
+const ModalMain = forwardRef<HTMLDivElement, ModalMainProps>(
+    ({ overflow, children, ...rest }, ref) => (
+        <StyledModalMain ref={ref} $overflow={overflow} {...rest}>
+            {children}
+        </StyledModalMain>
+    )
+);
+
+const ModalBanner = forwardRef<HTMLDivElement, ModalBannerProps>(
+    ({ children, ...rest }, ref) => (
+        <StyledModalBanner ref={ref} {...rest}>
+            {children}
+        </StyledModalBanner>
+    )
+);
+
+const ModalTitle = forwardRef<HTMLHeadingElement, ModalTitleProps>(
+    ({ children, ...rest }, ref) => (
+        <StyledModalTitle ref={ref} {...rest}>
+            {children}
+        </StyledModalTitle>
+    )
+);
+
+const ModalDescription = forwardRef<HTMLDivElement, ModalDescriptionProps>(
+    ({ children, ...rest }, ref) => (
+        <StyledModalDescription ref={ref} {...rest}>
+            {children}
+        </StyledModalDescription>
+    )
+);
+
+const ModalBody = forwardRef<HTMLDivElement, ModalBodyProps>(
+    ({ modalBodyMargin, children, ...rest }, ref) => (
+        <StyledModalBody ref={ref} $modalBodyMargin={modalBodyMargin} {...rest}>
+            {children}
+        </StyledModalBody>
+    )
+);
+
+const ModalDivider = forwardRef<HTMLDivElement, ModalDividerProps>(
+    ({ ...rest }, ref) => <StyledModalDivider ref={ref} {...rest} />
+);
 
 /**
  * A modal is used to display content that temporarily blocks
@@ -103,123 +205,127 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     );
 
     return (
-        <AnimatePresence>
-            {shouldRender && (
-                <Overlay
-                    shouldDisableScroll={shouldDisableScroll}
-                    onOverlayClick={() => {
-                        if (hideOnClickAway) {
-                            handleClose();
-                        }
-                    }}
-                    shouldTintOverlay
-                    shouldBlurOverlay={blurBackground}
-                    shouldCenterContent
-                    data-testid="testid-modalwrapper"
-                    className={className}
-                    animationDuration={0.3}
-                    shouldFocusOnFirstElement={shouldFocusOnFirstElement}
-                >
-                    <StyledModal
-                        onClick={(e: React.MouseEvent<HTMLDivElement>) =>
-                            e.stopPropagation()
-                        }
-                        ref={modalRef}
-                        width={width}
-                        height={height}
-                        minHeight={minHeight}
-                        minWidth={minWidth}
-                        maxHeight={maxHeight}
-                        maxWidth={maxWidth}
-                        mobileBottomFullWidth={mobileBottomFullWidth}
-                        modalPadding={modalPadding}
-                        $border={border}
-                        aria-labelledby={`modal-title-${id}`}
-                        aria-describedby={`modal-description-${id}`}
-                        aria-modal="true"
-                        role="dialog"
-                        data-testid="testid-modal"
-                        {...motionProps}
+        <GrauityLazyMotion>
+            <AnimatePresence>
+                {shouldRender && (
+                    <Overlay
+                        shouldDisableScroll={shouldDisableScroll}
+                        onOverlayClick={() => {
+                            if (hideOnClickAway) {
+                                handleClose();
+                            }
+                        }}
+                        shouldTintOverlay
+                        shouldBlurOverlay={blurBackground}
+                        shouldCenterContent
+                        data-testid="testid-modalwrapper"
+                        className={className}
+                        animationDuration={0.3}
+                        shouldFocusOnFirstElement={shouldFocusOnFirstElement}
                     >
-                        <StyledModalMain $overflow={overflow}>
-                            {showCloseButton && (
-                                <StyledModalAction justifyContent="end">
-                                    <IconButton
-                                        onClick={handleClose}
-                                        size="small"
-                                        variant="tertiary"
-                                        color="neutral"
-                                        icon="close"
-                                        ariaLabel="Close"
-                                        buttonProps={{ autoFocus: true }}
-                                    />
-                                </StyledModalAction>
-                            )}
+                        <StyledModal
+                            onClick={(e: React.MouseEvent<HTMLDivElement>) =>
+                                e.stopPropagation()
+                            }
+                            ref={modalRef}
+                            $width={width}
+                            $height={height}
+                            $minHeight={minHeight}
+                            $minWidth={minWidth}
+                            $maxHeight={maxHeight}
+                            $maxWidth={maxWidth}
+                            $mobileBottomFullWidth={mobileBottomFullWidth}
+                            $modalPadding={modalPadding}
+                            $border={border}
+                            aria-labelledby={`modal-title-${id}`}
+                            aria-describedby={`modal-description-${id}`}
+                            aria-modal="true"
+                            role="dialog"
+                            data-testid="testid-modal"
+                            {...motionProps}
+                        >
+                            <StyledModalMain $overflow={overflow}>
+                                {showCloseButton && (
+                                    <StyledModalAction $justifyContent="end">
+                                        <IconButton
+                                            onClick={handleClose}
+                                            size="small"
+                                            variant="tertiary"
+                                            color="neutral"
+                                            icon="close"
+                                            ariaLabel="Close"
+                                            buttonProps={{ autoFocus: true }}
+                                        />
+                                    </StyledModalAction>
+                                )}
 
-                            {banner && (
-                                <StyledModalBanner>{banner}</StyledModalBanner>
-                            )}
+                                {banner && (
+                                    <StyledModalBanner>
+                                        {banner}
+                                    </StyledModalBanner>
+                                )}
 
-                            {title && (
-                                <StyledModalTitle id={`modal-title-${id}`}>
-                                    {title}
-                                </StyledModalTitle>
-                            )}
+                                {title && (
+                                    <StyledModalTitle id={`modal-title-${id}`}>
+                                        {title}
+                                    </StyledModalTitle>
+                                )}
 
-                            {description && (
-                                <StyledModalDescription
-                                    id={`modal-description-${id}`}
-                                >
-                                    {description}
-                                </StyledModalDescription>
-                            )}
+                                {description && (
+                                    <StyledModalDescription
+                                        id={`modal-description-${id}`}
+                                    >
+                                        {description}
+                                    </StyledModalDescription>
+                                )}
 
-                            {body && (
-                                <StyledModalBody
-                                    modalBodyMargin={modalBodyMargin}
-                                >
-                                    {body}
-                                </StyledModalBody>
-                            )}
+                                {body && (
+                                    <StyledModalBody
+                                        $modalBodyMargin={modalBodyMargin}
+                                    >
+                                        {body}
+                                    </StyledModalBody>
+                                )}
 
-                            {children && (
-                                <StyledModalBody
-                                    modalBodyMargin={modalBodyMargin}
-                                >
-                                    {children}
-                                </StyledModalBody>
-                            )}
-                        </StyledModalMain>
+                                {children && (
+                                    <StyledModalBody
+                                        $modalBodyMargin={modalBodyMargin}
+                                    >
+                                        {children}
+                                    </StyledModalBody>
+                                )}
+                            </StyledModalMain>
 
-                        {action && (
-                            <StyledModalAction>{action}</StyledModalAction>
-                        )}
-                    </StyledModal>
-                </Overlay>
-            )}
-        </AnimatePresence>
+                            {action && (
+                                <StyledModalAction>{action}</StyledModalAction>
+                            )}
+                        </StyledModal>
+                    </Overlay>
+                )}
+            </AnimatePresence>
+        </GrauityLazyMotion>
     );
 }) as React.ForwardRefExoticComponent<
     ModalProps & React.RefAttributes<HTMLDivElement>
 > & {
-    Modal: typeof StyledModal;
-    Main: typeof StyledModalMain;
-    Banner: typeof StyledModalBanner;
-    Title: typeof StyledModalTitle;
-    Description: typeof StyledModalDescription;
-    Body: typeof StyledModalBody;
-    Action: typeof StyledModalAction;
-    Divider: typeof StyledModalDivider;
+    Modal: typeof ModalModal;
+    Main: typeof ModalMain;
+    Banner: typeof ModalBanner;
+    Title: typeof ModalTitle;
+    Description: typeof ModalDescription;
+    Body: typeof ModalBody;
+    Action: typeof ModalAction;
+    Divider: typeof ModalDivider;
 };
 
-Modal.Modal = StyledModal;
-Modal.Main = StyledModalMain;
-Modal.Banner = StyledModalBanner;
-Modal.Title = StyledModalTitle;
-Modal.Description = StyledModalDescription;
-Modal.Body = StyledModalBody;
-Modal.Action = StyledModalAction;
-Modal.Divider = StyledModalDivider;
+Modal.Modal = ModalModal;
+Modal.Main = ModalMain;
+Modal.Banner = ModalBanner;
+Modal.Title = ModalTitle;
+Modal.Description = ModalDescription;
+Modal.Body = ModalBody;
+Modal.Action = ModalAction;
+Modal.Divider = ModalDivider;
 
 export { type ModalProps };
 

@@ -55,13 +55,21 @@ function MonthlyCalendarGridItem<T>(props: MonthlyCalendarGridItemProps<T>) {
         : 'var(--bg-subtle-secondary-default, #f6f7f9)';
 
     if (typeof renderDayItem === 'function') {
-        return <>{eventsToRender.map((event) => renderDayItem(event))}</>;
+        return (
+            <>
+                {eventsToRender.map((event) => (
+                    <React.Fragment key={event?.id}>
+                        {renderDayItem(event)}
+                    </React.Fragment>
+                ))}
+            </>
+        );
     }
 
     return (
         <StyledMonthlyCalendarGridItem
             ref={gridItemRef}
-            backgroundColor={cellBackgroundColor}
+            $backgroundColor={cellBackgroundColor}
         >
             <DateCircle date={cellDate} />
             {eventsToRender.map((event) => (
